@@ -1,6 +1,7 @@
-# 🎮 Simon Game com Arduino
+# 🎮 Genius Game com Arduino
 
-Um projeto completo do clássico **jogo da memória “Simon”**, desenvolvido em **Arduino**, com **LEDs coloridos, botões interativos e sons** emitidos por um buzzer duplo.  
+Um projeto completo do clássico **jogo da memória “Simon”**, desenvolvido em **Arduino**, com **LEDs coloridos, botões interativos, sons** e agora um **display digital TM1637** que exibe mensagens como **“Hi”** e **“Good”** 🎉  
+
 O objetivo é testar a memória e a concentração do jogador, repetindo corretamente as sequências de luzes e sons que o sistema reproduz.
 
 ---
@@ -16,7 +17,14 @@ O objetivo é testar a memória e a concentração do jogador, repetindo correta
   Quem errar a ordem ou demorar demais... perde!
 
 - 🎵 **Easter Egg: Modo Bee Gees!**  
-  Segure o botão **amarelo** ao iniciar o jogo para desbloquear uma **melodia disco animada** com LEDs piscando no ritmo!
+  Segure o botão **amarelo** ao iniciar o jogo para desbloquear uma **melodia disco animada** com LEDs piscando no ritmo! 🕺
+
+- 🖥️ **Novo: Display TM1637 integrado**  
+  Exibe mensagens dinâmicas:
+  - “Hi” → quando o jogador pressiona um botão para começar o jogo.  
+  - “Good” → ao acertar uma rodada.  
+  - Contagem numérica das rodadas.  
+  - Mensagens “bye” e efeitos visuais ao final da partida.
 
 ---
 
@@ -29,31 +37,38 @@ O objetivo é testar a memória e a concentração do jogador, repetindo correta
 | Resistores (220Ω a 330Ω) | 4 | Proteção dos LEDs |
 | Botões (push buttons) | 4 | Entrada do jogador |
 | Buzzers piezoelétricos | 2 | Emissão de sons |
+| **Display TM1637 (4 dígitos)** | 1 | Exibição de mensagens e pontuação |
 | Jumpers e Protoboard | - | Conexões elétricas |
 
 ---
 
 ## ⚙️ Configuração dos Pinos
 
-| Cor / Função | LED | Botão | Frequência (Hz) |
-|---------------|------|--------|----------------|
-| 🔴 Vermelho | D10 | D9 | 440 |
-| 🟢 Verde | D3 | D2 | 880 |
-| 🔵 Azul | D13 | D12 | 587 |
-| 🟡 Amarelo | D5 | D6 | 784 |
-| 🔊 Buzzer 1 | D4 | — | — |
-| 🔊 Buzzer 2 | D7 | — | — |
+| Função | Pino | Observação |
+|--------|------|-------------|
+| LED Vermelho | D10 | Saída |
+| LED Verde | D3 | Saída |
+| LED Azul | D13 | Saída |
+| LED Amarelo | D5 | Saída |
+| Botão Vermelho | D9 | Entrada com pull-up |
+| Botão Verde | D2 | Entrada com pull-up |
+| Botão Azul | D12 | Entrada com pull-up |
+| Botão Amarelo | D6 | Entrada com pull-up |
+| Buzzer 1 | D4 | Saída de som |
+| Buzzer 2 | D7 | Saída de som |
+| TM1637 CLK | D8 | Clock do display |
+| TM1637 DIO | D11 | Dados do display |
 
 ---
 
 ## 🕹️ Como Jogar
 
-1. **Ligue o Arduino** — as luzes piscarão em modo “atração”.  
-2. **Pressione qualquer botão** para começar o jogo.  
+1. **Ligue o Arduino** — as luzes entram no **modo de espera animado**.  
+2. **Pressione qualquer botão** para começar o jogo — o display mostrará **“Hi”**.  
 3. Observe a sequência de LEDs e sons.  
-4. **Repita exatamente a sequência** pressionando os botões.  
-5. A cada acerto, o jogo adiciona um novo passo.  
-6. **Errou ou demorou mais de 3 segundos?** Perde o jogo.  
+4. **Repita exatamente a sequência** pressionando os botões correspondentes.  
+5. A cada acerto, o display mostra **“Good”** e a pontuação é atualizada.  
+6. Se errar ou demorar mais de **3 segundos**, o jogo termina com a mensagem **“bye”**.  
 7. Chegue até **13 rodadas** para vencer! 🏆
 
 ---
@@ -66,13 +81,25 @@ O objetivo é testar a memória e a concentração do jogador, repetindo correta
 
 ---
 
+## 🖥️ Exibições do Display TM1637
+
+| Situação | Exibição | Descrição |
+|-----------|-----------|------------|
+| Início do jogo | **Hi** | Saudação inicial ao pressionar um botão |
+| Acerto | **Good** | Mostra a mensagem de acerto |
+| Fim do jogo | **bye** | Mostra mensagem de encerramento |
+| Rodadas | **Número** | Mostra o total de acertos (1 a 13) |
+| Efeitos especiais | Piscar e varredura | Usados em vitórias e animações |
+
+---
+
 ## 🏁 Objetivo Educacional
 
 Este projeto é ideal para **iniciantes em eletrônica e programação Arduino**, abordando:  
 - Estruturas condicionais (`if`, `switch`)  
 - Uso de arrays e funções  
 - Temporização com `millis()` e `delay()`  
-- Controle de hardware digital (LEDs, botões, buzzers)
+- Controle de hardware digital (LEDs, botões, buzzers e displays)
 
 ---
 
@@ -87,3 +114,6 @@ Sinta-se livre para **modificar, aprender e compartilhar**! 💡
 
 Desenvolvido para fins **educacionais** e de **aprendizado em lógica e eletrônica interativa**.  
 Inspirado no clássico **“Simon Says”** da década de 1980.
+
+**Full Changelog**:  
+https://github.com/guilhermecoding/genius-game-arduino/compare/v1.0.0...v1.0.0
